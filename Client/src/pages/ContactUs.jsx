@@ -1,234 +1,143 @@
-import React, { useEffect, useState } from "react";
-import styled from "styled-components";
-import Navbar from "../components/Navbar";
-import { Link } from "react-router-dom";
-import { FaLocationDot } from "react-icons/fa6";
-import { BiSolidContact } from "react-icons/bi";
-import { MdEmail } from "react-icons/md";
-import NavbarMob from "../components/NavbarMob";
-import cogoToast from 'cogo-toast';
-import axios from "axios";
-import ReactGA from "react-ga4";
-import { Helmet } from 'react-helmet';
-import { useLocation } from 'react-router-dom';
+import React, { useState } from 'react';
+import axios from 'axios';
+import { FaBuilding, FaMapMarkerAlt, FaPhoneAlt } from 'react-icons/fa';
 
-function ContactUs() {
-    const [isScrolled, setIsScrolled] = useState(false);
-    const location = useLocation();
-    const canonicalUrl = 'https://bharatroofers.com' + location.pathname;
-    
-    
-    const [formData,setFormData] = useState({
-     
-      name : "",
-      email : "",
-      phone : "",
-      message : ""
-  
-    });
-  
-    const handleChange = (e) =>{
-      setFormData({...formData,[e.target.name] : e.target.value})
-    };
-     console.log(formData.message)
-  
-     const handleSubmit = async (e) => {
-      e.preventDefault();
-      // Check if required fields are empty
-    if (!formData.name || !formData.email || !formData.phone || !formData.message) {
-      cogoToast.error('Please fill in all required fields.');
+const ContactUs = () => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [message, setMessage] = useState('');
+  const [success, setSuccess] = useState('');
+  const [error, setError] = useState('');
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    if (!name || !email || !phone || !message) {
+      setError('All fields are required.');
       return;
     }
-     
-      try{
-       
-        const res = await axios.post("https://bharatroofers.com/api/property/contacted" , formData)
-        
-        console.log(res)
-        if(res.data.success === true){
-          cogoToast.success(`${res.data.message}`)
-          setFormData({
-            name: "",
-            email: "",
-            phone: "",
-            message: ""
-          });
-        
-        }
-        
+
+    try {
+      const response = await axios.post('https://real-estate.doaguru.com/api/property/contacted', {
+        name,
+        email,
+        phone,
+        message
+      });
+
+      if (response.data.success) {
+        setSuccess('Your message has been sent successfully!');
+        setName('');
+        setEmail('');
+        setPhone('');
+        setMessage('');
+        setError('');
+      } else {
+        setError(response.data.message || 'Failed to send your message. Please try again.');
+        setSuccess('');
       }
-      catch(error){
-        
-        console.log(error.response)
-        cogoToast.error(`${error.response.data.error}`)
-        
-  
-      }
-  
+    } catch (err) {
+      console.error('Error sending message:', err);
+      setError('Failed to send your message. Please try again.');
+      setSuccess('');
     }
-
-
-
-    useEffect(()=>{
-      ReactGA.send({ hitType: "pageview", page: window.location.pathname });
-      const handleTop = () => {
-        window.scrollTo(0, 0);
-      };
-      handleTop();
-    },[])
+  };
 
   return (
-    <>
-    <Container>
-    <Helmet>
-        <link rel="canonical" href={canonicalUrl} />
-      </Helmet>
-    <div className="nav1"><Navbar  isScrolled={isScrolled} /></div>
-          <div className="nav2"><NavbarMob /> </div>
-    <div className='container boxContainer mt-5'>
-        <div className='row'>
-            <div className='col-12 mt-5'>
-              <h4 className='text-center'>CONTACT US</h4>
+    <div className="relative flex justify-center items-center bg-black text-white min-h-screen p-8 md:mt-18 md:pt-[4rem]" data-aos="zoom-in-left" data-aos-duration="1500">
+      <div className="absolute inset-0 bg-cover bg-center backdrop-filter backdrop-blur-sm" style={{ backgroundImage: 'url("https://thumbs.wbm.im/pw/small/e79ed78f33ea2825b7bb5598d66fe60c.jpg")', opacity: 0.3 }}></div>
+      <div className="relative bg-opacity-80 p-8 rounded-lg shadow-lg w-full max-w-screen-lg flex flex-col lg:flex-row gap-8 justify-center items-center">
+        <div className="w-full lg:w-1/2 max-w-md">
+          <h2 className="mb-4 text-4xl font-extrabold">Contact Us</h2>
+          <p className="mb-8">We use an agile approach to test assumptions and connect with the needs of your audience early and often.</p>
+          <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-6">
+            <div>
+              <label htmlFor="name" className="block mb-2 text-sm font-medium">Full Name</label>
+              <input
+                type="text"
+                id="name"
+                className="shadow-sm bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+                placeholder="Full Name"
+                required
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
             </div>
-             </div>
-        <div className='row mb-5'>
-            <div className='col-12 col-md-6'>
-                  <ul className="list p-0">
-                    <div className="d-flex align-items-center gap-3">
-                    <span className="display-6"><FaLocationDot/></span>
-                      <li className='mt-4'>
-                         <h6> Office Address</h6>
-                          <p>1815 Wright Town,
-                Jabalpur, Madhya pradesh INDIA
-                482002</p>
-                      </li>
-                    </div>
-                      <div className="d-flex align-items-center gap-3">
-                      <span className="display-6"><BiSolidContact /></span>
-                      <li className='mt-5'>  <h6>Phone Number </h6>
-                          {/* <p> office: +91-8827795555 / +91-7489924666</p> */}
-                          <p>Mobile: +91-8839280515</p>
-                      </li>
-                      </div>
-                      <div className="d-flex align-items-center gap-3">
-                      <span className="display-6"><MdEmail /></span>
-                      <li className='mt-5'><h6> Email Address</h6>
-                          <p>info@bharatroofers.com</p>
-                      </li>
-                      </div>
-                  </ul>
-
+            <div>
+              <label htmlFor="email" className="block mb-2 text-sm font-medium">Your Email</label>
+              <input
+                type="email"
+                id="email"
+                className="shadow-sm bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+                placeholder="name@flowbite.com"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
             </div>
-            
-            <div className='col-12 col-md-6'>
-            <form onSubmit={handleSubmit}>
-            <div className="mb-3 mt-4">
-               
-                <input
-                  type="text"
-                  placeholder="Enter your fullname"
-                  name="name"
-                  className="form-control"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              
-              <div className="mb-3 mt-4">
-               
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  name="email"
-                  className="form-control"
-                  value={formData.email}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="mb-3 mt-4">
-               
-                <input
-                  type="text"
-                  placeholder="Enter your 10 digit mobile number"
-                  name="phone"
-                  maxLength={10}
-                  className="form-control"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <div className="mb-3">
-               
-                <textarea placeholder="Write message"
-                className="form-control"
-                name="message"
+            <div>
+              <label htmlFor="phone" className="block mb-2 text-sm font-medium">Phone Number</label>
+              <input
+                type="text"
+                id="phone"
+                className="shadow-sm bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+                placeholder="+12 345 6789"
+                required
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+              />
+            </div>
+            <div>
+              <label htmlFor="message" className="block mb-2 text-sm font-medium">Your Message</label>
+              <textarea
+                id="message"
                 rows="6"
-                onChange={handleChange}
-                value={formData.message}
-                />
-
-                
-              </div>
-
-              <div className="d-flex justify-content-center">
-                <button type="submit" className="btn btn-success" >Submit</button>
-              </div>
-              </form>
+                className="block p-2.5 w-full text-sm text-white bg-gray-700 rounded-lg shadow-sm border border-gray-600 focus:ring-primary-500 focus:border-primary-500"
+                placeholder="Leave a comment..."
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+              ></textarea>
             </div>
-            
-
-
+            <button
+              type="submit"
+              className="bg-blue-900 transition-all hover:bg-blue-800 py-3 px-5 text-sm font-medium text-center text-white rounded-lg focus:ring-4 focus:outline-none"
+            >
+              Send Message
+            </button>
+            {success && <p className="text-green-500 mt-4">{success}</p>}
+            {error && <p className="text-red-500 mt-4">{error}</p>}
+          </form>
         </div>
+        <div className="w-full lg:w-1/2 flex flex-col gap-10">
+          <div className="flex items-center">
+            <FaBuilding className="mr-3 text-gray-500 text-2xl" />
+            <div>
+              <h3 className="text-lg font-medium">Company Information:</h3>
+              <p>BharatRoofers PVT</p>
+              <p>info@bharatroofers.com</p>
+            </div>
+          </div>
+          <div className="flex items-center">
+            <FaMapMarkerAlt className="mr-3 text-gray-500 text-2xl" />
+            <div>
+              <h3 className="text-lg font-medium">Address:</h3>
+              <p>1815 Wright Town, Jabalpur,</p>
+              <p> Madhya pradesh INDIA 482002</p>
+            </div>
+          </div>
+          <div className="flex items-center">
+            <FaPhoneAlt className="mr-3 text-gray-500 text-2xl" />
+            <div>
+              <h3 className="text-lg font-medium">Call Us:</h3>
+              <p>Call us to speak to a member of our team. We are always happy to help.</p>
+              <p> +91-8839280515</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    </Container>
-    </>
-  )
-}
+  );
+};
 
-export default ContactUs
-
-const Container = styled.div`
- 
-  .boxContainer {
-
-
-
-    .list{
-        list-style: none;
-    }
-    
-
-    .formcontent {
-      background-color: #0dcaf0;
-      padding: 1rem;
-      border-radius: 1rem;
-      height: auto;
-      box-shadow: 1px 2px 34px #38c7e4;
-      h1 {
-        text-align: center;
-        font-family: monospace;
-        margin: 1rem 0;
-        color: #08494c;
-      }
-    }
-  }
-  .nav1{
-    display: block;
-    @media screen and (max-width: 1000px) {
-    
-    display: none;
-    
-  }
-}
-  .nav2{
-    display: none;
-  
-    @media screen and (max-width: 1000px) {
-   display: block;
-   
- }
-   
-  }
-`;
+export default ContactUs;

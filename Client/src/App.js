@@ -1,85 +1,87 @@
-import logo from "./logo.svg";
-import "./App.css";
-import { Route, Router, Routes } from "react-router-dom";
-import Homepage from "./pages/Homepage";
-import About from "./pages/About";
-import Footer from "./components/Footer";
-import Registration from "./pages/Registration";
-import Login from "./pages/Login";
-import ForgotPassword from "./pages/ForgotPassword";
-import ContactUs from "./pages/ContactUs";
-import Blogs from "./pages/Blogs";
-import ReactGA from "react-ga4";
+import { Route, Routes, useLocation } from "react-router-dom";
+import { useEffect } from "react";
+import Home from "./Components/Home";
+import ContactUs from "./Pages/ContactUs";
+import About from "./Pages/About";
+import Blogs from "./Pages/Blogs";
+import SinglePage from "./Pages/Blog.SinglePage";
+import LoginForm from "./Pages/Login";
+import RegisterForm from "./Pages/Registration";
+import UpperNav from "./Components/UpperNav";
+import PropertyCard from "./Pages/PropertyCard";
+import Box from "./Components/LightBox";
+import Footer from "./Components/Footer";
+import CategoryPage from "./Pages/CategoryPage";
+import FooterCategory from "./Pages/FooterCategory";
+import TermsAndCondition from "./Pages/TermsAndConditions";
+import PrivacyPolicy from "./Pages/Privacy";
+import Singleblog1 from "./Pages/Single Blogs/Singleblog1";
+import Singleblog2 from "./Pages/Single Blogs/Singleblog2";
+import Singleblog3 from "./Pages/Single Blogs/Singleblog3";
+import Singleblog4 from "./Pages/Single Blogs/Singleblog4";
+import Singleblog5 from "./Pages/Single Blogs/Singleblog5";
+import Singleblog6 from "./Pages/Single Blogs/Singleblog6";
+import Singleblog7 from "./Pages/Single Blogs/Singleblog7";
+import Singleblog8 from "./Pages/Single Blogs/Singleblog8";
 
-import SingleProperty from "./components/SingleProperty";
 
-import PopularCategory from "./components/PopularCategory";
+function ScrollToTop() {
+  const { pathname } = useLocation();
 
-import Luxuaryhouse from "./components/Luxuaryhouse";
-import NavbarMob from "./components/NavbarMob";
-import PropertyType from "./components/PropertyType";
-import RentedProperties from "./components/RentedProperties";
-import Singleblog1 from "./components/Blogs/Single Blogs/Singleblog1";
-import Singleblog2 from "./components/Blogs/Single Blogs/Singleblog2";
-import Singleblog3 from "./components/Blogs/Single Blogs/Singleblog3";
-import Singleblog4 from "./components/Blogs/Single Blogs/Singleblog4";
-import Singleblog5 from "./components/Blogs/Single Blogs/Singleblog5";
-import Singleblog6 from "./components/Blogs/Single Blogs/Singleblog6";
-import Singleblog7 from "./components/Blogs/Single Blogs/Singleblog7";
-import Singleblog8 from "./components/Blogs/Single Blogs/Singleblog8";
-import Flats from "./components/FooterComponents/Flats";
-import RentalProperty from "./components/FooterComponents/RentalProperty";
-import ResaleProperty from "./components/FooterComponents/ResaleProperty";
-import TermsAndCondition from "./pages/TermsAndCondition";
-import PrivacyPolicy from "./pages/PrivacyPolicy";
-import ResetPassword from "./pages/ResetPassword";
+  useEffect(() => {
+    // Scroll to top on pathname change (for forward navigation)
+    window.scrollTo(0, 0);
 
-const Tracking_Id = "G-0XYJQVFWDJ";
-ReactGA.initialize(Tracking_Id);
-ReactGA.send({ hitType: "pageview", page: window.location.pathname });
+    // Scroll to top on backward navigation
+    const handlePopState = () => {
+      window.scrollTo(0, 0);
+    };
+
+    // Add event listener for popstate (backward navigation)
+    window.addEventListener("popstate", handlePopState);
+
+    // Cleanup event listener on component unmount
+    return () => {
+      window.removeEventListener("popstate", handlePopState);
+    };
+  }, [pathname]);
+
+  return null;
+}
+
+
 
 function App() {
-  
   return (
-    <> 
-      
-      <div style={{overflowX:"hidden"}}>
+    <div>
+      <UpperNav />
+      <ScrollToTop />
       <Routes>
-        <Route path="/" element={<Homepage />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/register" element={<Registration />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/forgot-password" element={<ForgotPassword/>} />
-        <Route path="/reset-password/:id/:token" element={<ResetPassword/>} />
+        <Route path="/" element={<Home />} />
         <Route path="/contact" element={<ContactUs />} />
-        <Route path="/blog" element={<Blogs/>} />
-        {/* <Route path="/blog/single-blog" element={<SingleBlog/>} /> */}
-        
-        <Route path="/blogs/single-blog1" element={<Singleblog1/>} />
-        <Route path="/blogs/single-blog2" element={<Singleblog2/>} />
-        <Route path="/blogs/single-blog3" element={<Singleblog3/>} />
-        <Route path="/blogs/single-blog4" element={<Singleblog4/>} />
-        <Route path="/blogs/single-blog5" element={<Singleblog5/>} />
-        <Route path="/blogs/single-blog6" element={<Singleblog6/>} />
-        <Route path="/blogs/single-blog7" element={<Singleblog7/>} />
-        <Route path="/blogs/single-blog8" element={<Singleblog8/>} />
-
-
-
-       
-        <Route path="/property/:propertyId" element={<SingleProperty/>} />
-        <Route path="/property/propertyType/:propertyType" element={<PropertyType/>} />
-        <Route path="/property/:propertyType/:bhk" element={<Flats/>} />
-        <Route path="/property/propertiesForRent" element={<RentedProperties/>} />
-        <Route path="/property/propertiesForRent/:propertyType" element={<RentalProperty/>} />
-        <Route path="/property/propertiesForResale/:propertyType" element={<ResaleProperty/>} />
-        <Route path="/info/terms-and-conditions" element={<TermsAndCondition/>} />
-        <Route path="/info/privacy-policy" element={<PrivacyPolicy/>} />
-
+        <Route path="/about" element={<About />} />
+        <Route path="/blogs" element={<Blogs />} />
+        <Route path="/blog/:postId" element={<SinglePage />} />
+        <Route path="/login" element={<LoginForm />} />
+        <Route path="/register" element={<RegisterForm />} />
+        <Route path="/property/:id" element={<PropertyCard />} />
+        <Route path="/box" element={<Box />} />
+        <Route path="/category" element={<CategoryPage />} />
+        <Route path="/footer-category" element={<FooterCategory />} />
+        <Route path="/terms" element={<TermsAndCondition />} />
+        <Route path="/privacy" element={<PrivacyPolicy />} />
+        <Route path="/single-1" element={<Singleblog1/>}/>
+        <Route path="/single-2" element={<Singleblog2/>}/>
+        <Route path="/single-3" element={<Singleblog3/>}/>
+        <Route path="/single-4" element={<Singleblog4/>}/>
+        <Route path="/single-5" element={<Singleblog5/>}/>
+        <Route path="/single-6" element={<Singleblog6/>}/>
+        <Route path="/single-7" element={<Singleblog7/>}/>
+        <Route path="/single-8" element={<Singleblog8/>}/>
+      
       </Routes>
       <Footer />
-      </div>
-    </>
+    </div>
   );
 }
 

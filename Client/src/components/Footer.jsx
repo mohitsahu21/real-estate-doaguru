@@ -1,173 +1,162 @@
-import React from "react";
-import styled from "styled-components";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useNavigate, Link } from "react-router-dom";
 import { BsFacebook, BsWhatsapp, BsInstagram } from "react-icons/bs";
-
 import { IoLogoYoutube } from "react-icons/io";
-import { BiLogoInstagramAlt, BiLogoWhatsappSquare } from "react-icons/bi";
-
-import logo from '../images/Real-Estate-Logo.png'
-import { Link } from "react-router-dom";
-import { hover } from "@testing-library/user-event/dist/hover";
+import logo from '../Assets/brLogo.png';
+import BackgroundBeams from "./BackgroundBeams";
 
 const Footer = () => {
+  const [properties, setProperties] = useState([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchProperties = async () => {
+      try {
+        const response = await axios.get('https://real-estate.doaguru.com/api/property/getAllProperty');
+        setProperties(response.data.data || []);
+      } catch (error) {
+        console.error('Error fetching properties:', error);
+      }
+    };
+
+    fetchProperties();
+  }, []);
+
+  const navigateToCategory = (category) => {
+    const filteredProperties = properties.filter(property => property.property_type.toLowerCase() === category.toLowerCase());
+    navigate('/category', { state: { filteredProperties } });
+  };
+
+  const categoryLinks = [
+    { type: 'house', title: 'House' },
+    { type: 'villa', title: 'Villa' },
+    { type: 'plot', title: 'Plot' },
+    { type: 'flat', title: 'Flat' },
+    { type: 'land', title: 'Land' },
+    { type: 'farmLand', title: 'Farm Land' },
+    { type: 'farmHouse', title: 'Farm House' },
+    { type: 'commercial', title: 'Commercial' }
+  ];
+
   return (
-    <>
-      <Container>
-        <div className="container-fluid footmain">
-          <div className="p-4">
-            <div className="row">
-              <div className="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
-                <h6 className="text-center">Popular Residential Property Searches</h6>
-                <ul>
-                 <a href="/property/propertyType/house" target="blank"> <li>Houses in Jabalpur</li> </a>
-                 <a href="/property/propertyType/villa" target="blank"> <li>Villas in Jabalpur</li></a>
-                <a href="/property/propertyType/plot" target="blank">  <li>Plots in Jabalpur</li></a>
-                <a href="/property/propertyType/flat" target="blank">  <li>Flats in Jabalpur</li></a>
-                <a href="/property/propertyType/land" target="blank"> <li>Land in Jabalpur</li></a>
-                <a href="/property/propertyType/farmLand" target="blank">  <li>Farm Land in Jabalpur</li></a>
-                <a href="/property/propertyType/farmHouse" target="blank"> <li>Farm House in Jabalpur</li></a>
-                 <a href="/property/propertyType/commercial" target="blank"> <li>Commercial Property in Jabalpur</li></a>
-                  
-                </ul>
-              </div>
-              <div className="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
-                <h6 className="text-center">Popular BHK Searches</h6>
-                <ul>
-                 <a href="/property/flat/1" target="blank"> <li>1 BHK Flats in Jabalpur</li></a>
-                 <a href="/property/flat/2" target="blank"> <li>2 BHK Flats in Jabalpur</li></a>
-                 <a href="/property/flat/3" target="blank"> <li>3 BHK Flats in Jabalpur</li></a>
-                 <a href="/property/flat/4" target="blank"> <li>4 BHK Flats in Jabalpur</li></a>
-                 <a href="/property/house/1" target="blank"> <li>1 BHK House for Sale in Jabalpur</li></a>
-                 <a href="/property/house/2" target="blank"> <li>2 BHK House for Sale in Jabalpur</li></a>
-                 <a href="/property/house/3" target="blank"> <li>3 BHK House for Sale in Jabalpur</li></a>
-                 <a href="/property/house/4" target="blank"> <li>4 BHK House for Sale in Jabalpur</li></a>
-                  
-                </ul>
-              </div>
-              <div className="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
-                <h6 className="text-center">Popular Rental Property Searches</h6>
-                <ul>
-                <a href="/property/propertiesForRent/house" target="blank"><li>Houses for Rent in  Jabalpur</li></a>
-                <a href="/property/propertiesForRent/villa" target="blank"> <li>Villas for Rent in Jabalpur</li></a>
-                <a href="/property/propertiesForRent/plot" target="blank"> <li>Plots for Rent in Jabalpur</li></a>
-                <a href="/property/propertiesForRent/flat" target="blank"> <li>Flats for Rent in  Jabalpur</li></a>
-                <a href="/property/propertiesForRent/land" target="blank"> <li>Land for Rent in Jabalpur</li></a>
-                <a href="/property/propertiesForRent/farmLand" target="blank"> <li>Farm Lands for Rent in Jabalpur</li></a>
-                <a href="/property/propertiesForRent/farmHouse" target="blank"> <li>Farm House for Rent in Jabalpur</li></a>
-                <a href="/property/propertiesForRent/commercial" target="blank">  <li>Commercial Property for Rent in Jabalpur</li></a>
-                </ul>
-              </div>
-              <div className="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
-                <h6 className="text-center">Popular Resale Property Searches</h6>
-                <ul>
-                <a href="/property/propertiesForResale/house" target="blank"> <li>House for Resale in Jabalpur</li></a>
-                <a href="/property/propertiesForResale/villa" target="blank"> <li>Villas for Resale in Jabalpur</li></a>
-                <a href="/property/propertiesForResale/plot" target="blank"> <li>Plots for Resale in Jabalpur</li></a>
-                <a href="/property/propertiesForResale/flat" target="blank"> <li>Flats for Resale in Jabalpur</li></a>
-                <a href="/property/propertiesForResale/land" target="blank"> <li>Lands for Resale in Jabalpur</li></a>
-                <a href="/property/propertiesForResale/farmLand" target="blank"> <li>Farm Lands for Resale in Jabalpur</li></a>
-                <a href="/property/propertiesForResale/farmHouse" target="blank"> <li>Farm Houses for Resale in Jabalpur</li></a>
-                <a href="/property/propertiesForResale/commercial" target="blank"><li>Commercials Property for Resale in Jabalpur</li></a>
-                </ul>
-              
-              
-              
-              </div>
-              <div className="d-flex justify-content-center">
-                <ul className="text-center">
-                  <li> <img src={logo} height={100} width={100} alt="" className="rounded-3" /> </li>
-                  <li><h5 className="mt-3 mx-5">Follow us on</h5></li>
-                  <li><div className="d-flex gap-4 mt-3">
-                    
-                <Link to={"https://www.facebook.com/bharatroofers/"} target="blank">  <BsFacebook size={30} className="fbIcon" style={{color:"#316FF6"}}/></Link>
-                 <Link to={"https://www.instagram.com/bharatroofers?utm_source=qr&igsh=YzU1NGVlODEzOA=="} target="blank"> <BsInstagram size={30} style={{color:"#E4405F"}}/></Link>
-                  <Link className="" to={"https://wa.me/+918839280515"} target="blank"><BsWhatsapp size={30} style={{color:"#128C7E"}} onMouseOver={({ target }) =>
-                        (target.style.color = "#128C7E")
-                      }
-                      onMouseOut={({ target }) =>
-                        (target.style.color = "#128C7E")
-                        
-                    } /></Link>
-                   <IoLogoYoutube size={30} style={{color:"#CD201F"}}/>
-                        
-                </div></li>
-                
-                 
-                </ul>
-                 
-                  
-                </div>
-             
-              <div>
-                  <h5 className="text-white text-center fs-6">Copyright &copy; 2024 Bharatroofers.com | All Rights Reserved</h5> 
-                <p  className="text-white text-center fs-6"> <a href="https://bharatroofers.com/info/terms-and-conditions" target="blank" className="terms"><span className="text-white">Terms and Conditions</span></a> | <a href="https://bharatroofers.com/info/privacy-policy" target="blank" className="terms"><span className="text-white">Privacy Policy</span> </a></p> 
-                </div>
-            </div>
+    <footer className="relative bg-black text-white py-6 z-0">
+      {/* BackgroundBeams component */}
+      <BackgroundBeams className="absolute inset-0 z-[-1]" />
+
+      <div className="container mx-auto px-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center md:text-left">
+          {/* Popular Residential Property Searches */}
+          <div className="mb-4">
+            <h6 className="text-sm font-bold border-b border-white pb-1 mb-2">Popular Residential Property Searches</h6>
+            <ul className="space-y-1">
+              {categoryLinks.map(({ type, title }) => (
+                <li key={type}>
+                  <button
+                    onClick={() => navigateToCategory(type)}
+                    className="text-white hover:text-red-500 text-sm px-2 py-1 rounded"
+                  >
+                    {title} in Jabalpur
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Popular BHK Searches */}
+          <div className="mb-4">
+            <h6 className="text-sm font-bold border-b border-white pb-1 mb-2">Popular BHK Searches</h6>
+            <ul className="space-y-1">
+              {[1, 2, 3, 4].map(bhk => (
+                <li key={bhk}>
+                  <button
+                    onClick={() => navigateToCategory(`flat/${bhk}`)}
+                    className="text-white hover:text-red-500 text-sm px-2 py-1 rounded"
+                  >
+                    {bhk} BHK Flats in Jabalpur
+                  </button>
+                </li>
+              ))}
+              {[1, 2, 3, 4].map(bhk => (
+                <li key={`house-${bhk}`}>
+                  <button
+                    onClick={() => navigateToCategory(`house/${bhk}`)}
+                    className="text-white hover:text-red-500 text-sm px-2 py-1 rounded"
+                  >
+                    {bhk} BHK House for Sale in Jabalpur
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Popular Rental Property Searches */}
+          <div className="mb-4">
+            <h6 className="text-sm font-bold border-b border-white pb-1 mb-2">Popular Rental Property Searches</h6>
+            <ul className="space-y-1">
+              {categoryLinks.map(({ type, title }) => (
+                <li key={type}>
+                  <button
+                    onClick={() => navigateToCategory(`propertiesForRent/${type}`)}
+                    className="text-white hover:text-red-500 text-sm px-2 py-1 rounded"
+                  >
+                    {title} for Rent in Jabalpur
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Popular Resale Property Searches */}
+          <div className="mb-4">
+            <h6 className="text-sm font-bold border-b border-white pb-1 mb-2">Popular Resale Property Searches</h6>
+            <ul className="space-y-1">
+              {categoryLinks.map(({ type, title }) => (
+                <li key={type}>
+                  <button
+                    onClick={() => navigateToCategory(`propertiesForResale/${type}`)}
+                    className="text-white hover:text-red-500 text-sm px-2 py-1 rounded"
+                  >
+                    {title} for Resale in Jabalpur
+                  </button>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
-        {/* <div className="container-fluid">
-          <div className="container pt-3 pb-3">
-            <div className="row">
-              <div className="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
-                <div>
-                  <h5>MakanOnline</h5>
-                </div>
-              </div>
-              <div className="col-xl-7 col-lg-7 col-md-7 col-sm-12 col-12">
-                <div>
-                  <h5>@2023 Doaguruinfosystems. All Right Reserved</h5>
-                </div>
-              </div>
-              <div className="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12">
-                <div className="d-flex justify-content-evenly">
-                  <BsFacebook />
-                  <BsInstagram />
-                  <BsWhatsapp />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> */}
-      </Container>
-    </>
+
+        {/* Logo */}
+        <div className="flex justify-center mb-4">
+          <img src={logo} alt="Real Estate Logo" className="rounded-full h-16 w-16 object-cover" />
+        </div>
+
+        {/* Social Media Icons */}
+        <div className="flex justify-center gap-3 mb-2">
+          <a href="https://www.facebook.com/bharatroofers/" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-red-500 p-2 rounded">
+            <BsFacebook size={24} />
+          </a>
+          <a href="https://www.instagram.com/bharatroofers?utm_source=qr&igsh=YzU1NGVlODEzOA==" target="_blank" rel="noopener noreferrer" className="text-pink-500 hover:text-red-500 p-2 rounded">
+            <BsInstagram size={24} />
+          </a>
+          <a href="https://wa.me/+918839280515" target="_blank" rel="noopener noreferrer" className="text-green-500 hover:text-red-500 p-2 rounded">
+            <BsWhatsapp size={24} />
+          </a>
+          <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" className="text-red-500 hover:text-red-500 p-2 rounded">
+            <IoLogoYoutube size={24} />
+          </a>
+        </div>
+
+        {/* Footer Text */}
+        <div className="text-center">
+          <h5 className="text-sm mb-1">&copy; 2024 Bharatroofers.com | All Rights Reserved</h5>
+          <p className="text-sm">
+            <Link to="/terms" className="text-white font-bold hover:underline">Terms and Conditions</Link> | 
+            <Link to="/privacy" className="text-white font-bold hover:underline">Privacy Policy</Link>
+          </p>
+        </div>
+      </div>
+    </footer>
   );
 };
 
 export default Footer;
-const Container = styled.div`
-  .footmain {
-    background-color: #000;
-  }
-
-  h6 {
-    color: white;
-    border-bottom: 1px solid #ff7675;
-    padding-bottom: 0.5rem;
-  }
-  ul {
-    a{
-      text-decoration: none;
-      :hover{
-        color: red;
-      }
-    }
-    li {
-      list-style-type: none;
-      color: white;
-      
-    }
-  }
-  .terms{
-    text-decoration:none;
-  
-
-  }
-  .fbIcon{
-    :hover{
-      color: #316FF6;
-    }
-  }
-
-
-
-`;

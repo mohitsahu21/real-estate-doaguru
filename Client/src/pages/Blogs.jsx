@@ -1,235 +1,129 @@
-// import React, { useEffect, useState } from "react";
-// import styled from "styled-components";
-// import Navbar from "../components/Navbar";
-// import { Link } from "react-router-dom";
-// import BlogPost from "../components/BlogPost";
+import React from 'react';
+import { useNavigate, } from 'react-router-dom';
+import { TextRevealCardPreview } from '../Components/CardAnimation';
+import { useState } from 'react';
+const Blog = () => {
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const posts = [
+    {
+      id: 1,
+      title: 'The Critical Role of Home Inspections: A Buyers Guide to Informed Decisions',
+      image: 'https://media.istockphoto.com/id/178988183/photo/house-in-bad-summer-thunderstorm.webp?b=1&s=170667a&w=0&k=20&c=GCKr4PR2gErNiBLYPnH75IbcHEl1PcCVbmoqRUfCAKs=',
+      content: 'Escape to this stunning villa nestled along the coast, offering breathtaking views of the azure waters. This spacious retreat features modern amenities and expansive living areas, perfect for both relaxation and entertainment. Enjoy seamless indoor-outdoor living with private terraces and a lush garden oasis.',
+    },
+    {
+      id: 2,
+      title: 'New Construction vs. Resale Homes: Making the Right Choice for Your Next Property',
+      image: 'https://media.istockphoto.com/id/453944565/photo/home-exterior.webp?b=1&s=170667a&w=0&k=20&c=ONvmTRg63RYsyMJTnySOLpOBZlaoUeh6a9jfYuVQ_iw=',
+      content: 'In the quest for a new home, buyers often face the dilemma of choosing between new construction and resale properties. Each option comes with its own set of advantages and drawbacks, making the decision a crucial one in the home-buying journey.',
+    },
+    {
+      id: 3,
+      title: 'Looking for1 BHK Apartment Duplex',
+      image: 'https://real-estate.doaguru.com/static/media/blog3.a868ed5bc837e5adec6a.avif',
+      content: "Imagine having a cozy yet multi-level living space. That's precisely what a 1 BHK apartment duplex offers - a one-bedroom home spread across two levels, typically featuring a bedroom, a living area, and a kitchen. It's a smart fusion of compactness and practicality",
+    },
+    {
+      id: 4,
+      title: 'Budget Allocations and Real Estate: Paving the Path Ahead',
+      image: 'https://real-estate.doaguru.com/static/media/blog4.c13b6b74e4ac48492bfa.avif',
+      content: "Budget allocations in real estate are the architectural blueprints of success. They delineate the financial framework within which the industry operates, affecting everything from property development to market stability.",
+    },
+    {
+      id: 5,
+      title: 'Buying a 1 BHK Apartment: Ideal Space for Comfortable Living',
+      image: 'https://real-estate.doaguru.com/static/media/blog8.893a9c1a3a5bba7ae622.avif',
+      content: "Finding the perfect home is a thrilling yet daunting task. For many individuals or couples looking for their first property or an investment opportunity, a 1 BHK (Bedroom, Hall, Kitchen) apartment offers a promising and practical choice.",
+    },
+    {
+      id: 6,
+      title: 'Looking for Rented House: Deciphering 2BHK vs. 3BHK',
+      image: 'https://real-estate.doaguru.com/static/media/blog5.0eed389ad68383154b5d.jpg',
+      content: "The quest for a rented house, be it a 2BHK or 3BHK, is a significant decision that intertwines numerous considerations. Choosing the ideal abode involves a blend of personal preferences, financial analysis, and future aspirations.",
+    },
+    {
+      id: 7,
+      title: 'Looking for a 1 BHK Flat on Rent',
+      image: 'https://real-estate.doaguru.com/static/media/blog6.1884f99d91c0b1aade14.avif',
+      content: "Moving into a new place is an exhilarating experience, but the quest for the perfect 1 BHK (One Bedroom Hall Kitchen) flat on rent can often feel like a daunting task. This guide aims to simplify this journey by providing insights, tips, and guidance to ease your search process.",
+    },
+    {
+      id: 8,
+      title: 'Sale on 2-3 BHK House: Navigating the Real Estate Market',
+      image: 'https://real-estate.doaguru.com/static/media/blog8.893a9c1a3a5bba7ae622.avif',
+      content: "Real estate markets have been abuzz with the enticing prospects of buying or selling 2-3 BHK houses. As the real estate landscape continues to evolve, these properties have garnered substantial attention for their versatility.",
+    },
 
-// function Blogs() {
-//     const [isScrolled, setIsScrolled] = useState(false);
-//     const [blogPosts, setBlogPosts] = useState([]);
-//     // useEffect(() => {
-//     //     // Fetch data from your backend API
-//     //     fetch('your-backend-api-url')
-//     //       .then(response => response.json())
-//     //       .then(data => setBlogPosts(data))
-//     //       .catch(error => console.error('Error fetching data:', error));
-//     //   }, []);
+  ];
 
-//   return (
-//     <>
-//     <Container>
-//     <Navbar isScrolled={isScrolled}/>
-//     <div className="container-fluid mt-5">
-//         <div className="row">
-//             <div className="col-12 text-center mt-5">
-//                 <h1 className="">Blogs For Homes</h1>
-//                 <p>Here's the popular blogs.</p>
-                
-               
-//             </div>
-//         </div>
-//         <div className="row">
-//             <div className="col-12 d-flex justify-content-center">
-//             <form className="d-flex mt-4 justify-content-center searchBox ">
-//         <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-//         <button className="btn btn-outline-success" type="submit">Search</button>
-//       </form>
-//             </div>
-//         </div>
-       
-//          {/* <div>
-//       {blogPosts.map(post => (
-//         <BlogPost key={post.id} post={post} />
-//       ))}
-//        </div> */}
+  const navigate = useNavigate();
 
-//         <div className="row mt-5 cardBox">
-//             <div className="col-12 col-md-4 mb-4 ">
-//             <BlogPost/>
-//             </div>
-//             <div className="col-12 col-md-4 mb-4">
-//             <BlogPost/>
-//             </div>
-//             <div className="col-12 col-md-4 mb-4">
-//             <BlogPost/>
-//             </div>
-//             <div className="col-12 col-md-4 mb-4">
-//             <BlogPost/>
-//             </div>
-//             <div className="col-12 col-md-4 mb-4">
-//             <BlogPost/>
-//             </div>
-//             <div className="col-12 col-md-4 mb-4">
-//             <BlogPost/>
-//             </div>
-//         </div>
-        
-
-//     </div>
-//     </Container>
-//     </>
-//   )
-// }
-
-// export default Blogs
-
-// const Container = styled.div`
-// .searchBox{
-//     height: 50px;
-//     width: 60%;
-//     @media only screen and (max-width: 760px) {
-//         width: 100%
-     
-//     }
-   
-// }
-// .cardBox{
-   
-//     margin: auto;
-// }
-     
-// `;
-
-import React, { useEffect, useState } from "react";
-import styled from "styled-components";
-import Navbar from "../components/Navbar";
-
-import BlogPost from "../components/BlogPost";
-import Blog1 from './../components/Blogs/Blog1';
-import Blog2 from "../components/Blogs/Blog2";
-import Blog3 from "../components/Blogs/Blog3";
-import Blog4 from "../components/Blogs/Blog4";
-import Blog5 from "../components/Blogs/Blog5";
-import Blog6 from "../components/Blogs/Blog6";
-import Blog7 from "../components/Blogs/Blog7";
-import Blog8 from "../components/Blogs/Blog8";
-import NavbarMob from "../components/NavbarMob";
-import ReactGA from "react-ga4";
-import { Helmet } from 'react-helmet';
-import { useLocation } from 'react-router-dom';
-
-
-function Blogs() {
-    const [isScrolled, setIsScrolled] = useState(false);
-    const [blogPosts, setBlogPosts] = useState([]);
-    const location = useLocation();
-    const canonicalUrl = 'https://bharatroofers.com' + location.pathname;
-    // useEffect(() => {
-    //     // Fetch data from your backend API
-    //     fetch('your-backend-api-url')
-    //       .then(response => response.json())
-    //       .then(data => setBlogPosts(data))
-    //       .catch(error => console.error('Error fetching data:', error));
-    //   }, []);
-   
-    useEffect(()=>{
-      ReactGA.send({ hitType: "pageview", page: window.location.pathname });
-      const handleTop = () => {
-        window.scrollTo(0, 0);
-      };
-      handleTop();
-    },[])
-  return (
-    <>
-    <Container>
-    <Helmet>
-        <link rel="canonical" href={canonicalUrl} />
-      </Helmet>
-    <div className="nav1"><Navbar  isScrolled={isScrolled} /></div>
-          <div className="nav2"><NavbarMob /> </div>
-    <div className="container-fluid mt-5">
-        <div className="row">
-            <div className="col-12 text-center mt-5">
-                <h1 className="">Blogs For Homes</h1>
-                <p>Here's the popular blogs.</p>
-                
-               
-            </div>
-        </div>
-        {/* <div className="row">
-            <div className="col-12 d-flex justify-content-center">
-            <form className="d-flex mt-4 justify-content-center searchBox ">
-        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-        <button className="btn btn-outline-success" type="submit">Search</button>
-      </form>
-            </div>
-        </div> */}
-       
-         {/* <div>
-      {blogPosts.map(post => (
-        <BlogPost key={post.id} post={post} />
-      ))}
-       </div> */}
-
-        <div className="row mt-5 cardBox">
-            <div className="col-lg-4 col-md-6   mb-4 ">
-            <Blog1/>
-            </div>
-            <div className="col-lg-4 col-md-6   mb-4">
-          <Blog2/>
-            </div>
-            <div className="col-lg-4 col-md-6   mb-4">
-              <Blog3/>
-            </div>
-            <div className="col-lg-4 col-md-6   mb-4">
-            <Blog4/>
-            </div>
-            <div className="col-lg-4 col-md-6   mb-4">
-            <Blog5/>
-            </div>
-            <div className="col-lg-4 col-md-6   mb-4">
-            <Blog6/>
-            </div>
-            <div className="col-lg-4 col-md-6   mb-4">
-            <Blog7/>
-            </div>
-            <div className="col-lg-4 col-md-6   mb-4">
-            <Blog8/>
-            </div>
-            <div className="col-lg-4 col-md-6 col-12  mb-4">
-            
-            </div>
-        </div>
-        
-
-    </div>
-    </Container>
-    </>
-  )
-}
-
-export default Blogs
-
-const Container = styled.div`
-.searchBox{
-    height: 50px;
-    width: 60%;
-    @media only screen and (max-width: 760px) {
-        width: 100%
-     
+  const handleClick = (postId) => {
+    switch (postId) {
+      case 1:
+        navigate("/single-1");
+        break;
+      case 2:
+        navigate('/single-2');
+        break;
+      case 3:
+        navigate('/single-3');
+        break;
+      case 4:
+        navigate('/single-4');
+        break;
+      case 5:
+        navigate('/single-5');
+        break;
+      case 6:
+        navigate('/single-6');
+        break;
+      case 7:
+        navigate('/single-7');
+        break;
+      case 8:
+        navigate('/single-8');
+        break;
+      default:
+        console.error('Invalid postId:', postId);
+        break;
     }
-   
-}
-.cardBox{
-   
-    margin: auto;
-}
-.nav1{
-    display: block;
-    @media screen and (max-width: 1000px) {
-    
-    display: none;
-    
-  }
-}
-  .nav2{
-    display: none;
+  };
   
-    @media screen and (max-width: 1000px) {
-   display: block;
-   
- }
-   
-  }
-     
-`;
+
+  return (
+    <div className="container max-w-screen mx-auto px-4 py-8">
+      <span>
+        <TextRevealCardPreview/>
+      </span>
+      {posts.map((post, index) => (
+        <div
+          key={post.id}
+          className={`flex flex-col md:flex-row items-center mb-8 ${
+            index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
+          }`}
+          onClick={() => handleClick(post.id)}
+          style={{ cursor: 'pointer' }}
+        >
+          <div className="w-full md:max-w-[40rem] overflow-hidden">
+            <img
+              src={post.image}
+              alt={post.title}
+              className={`h-64 md:min-w-[40rem] cursor-pointer object-cover rounded-lg transition-transform duration-500 transform hover:scale-110 w-full h-full ${
+                imageLoaded ? '' : 'invisible'
+              }`}
+              onLoad={() => setImageLoaded(true)}
+            />
+            {!imageLoaded && <div className="h-64 bg-gray-200"></div>} {/* Placeholder while loading */}
+          </div>
+          <div className="w-full md:w-1/2 p-4">
+            <h2 className="text-xl font-bold mb-2">{post.title}</h2>
+            <p className="text-gray-700">{post.content}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default Blog;

@@ -1,26 +1,25 @@
 import React from 'react';
-
-import { createRoot } from 'react-dom/client';
+import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
-import {persistor, store} from './redux/store.js'
+import { Toaster } from 'react-hot-toast';
+import store from './Redux/store';
 import { Provider } from 'react-redux';
-import { PersistGate } from 'redux-persist/integration/react';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
-const container = document.getElementById('root');
-const root = createRoot(container);
+const GOOGLE_CLIENT_ID = '709902163543-fk6muis1q2q81heftf25g4p3n11tlu1t.apps.googleusercontent.com'; 
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
-    
-      <Provider store={store}>
-        <PersistGate persistor={persistor} loading={null}>
-      <App />
-      </PersistGate>
-      </Provider>
-    
+    <Toaster />
+    <Provider store={store}>
+      <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
+        <App />
+      </GoogleOAuthProvider>
+    </Provider>
   </BrowserRouter>
 );
 
@@ -28,4 +27,3 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
-

@@ -1,200 +1,151 @@
-import React, { useEffect, useState } from "react";
-import styled from "styled-components";
-import Navbar from "../components/Navbar";
-import { Link,useNavigate } from "react-router-dom";
-import axios from 'axios';
-import cogoToast from 'cogo-toast';
-import NavbarMob from "../components/NavbarMob";
-import ReactGA from "react-ga4";
-import { Helmet } from 'react-helmet';
-import { useLocation } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate,Link } from 'react-router-dom';
+import { registerUser } from '../Redux/slices/authSlice'; // Update the path if necessary
+import toast from 'react-hot-toast';
+import { HiEye, HiEyeOff } from 'react-icons/hi'; // Import eye icons
 
+const RegisterForm = () => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
 
-
-const Registration = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [formData,setFormData] = useState({});
-  const [error,setError] = useState(false);
-  const [loading,setLoading] = useState(false);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const location = useLocation();
-  const canonicalUrl = 'https://bharatroofers.com' + location.pathname;
-  
+  const { loading, error } = useSelector((state) => state.auth);
 
-  const handleChange = (e) =>{
-    setFormData({...formData,[e.target.name] : e.target.value})
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Basic client-side validation
+    if (!name || !email || !phone || !password || !confirmPassword) {
+      toast.error('All fields are required');
+      return;
+    }
+    if (!/\S+@\S+\.\S+/.test(email)) {
+      toast.error('Invalid email address');
+      return;
+    }
+    if (password !== confirmPassword) {
+      toast.error('Passwords do not match');
+      return;
+    }
+
+    // Dispatch the registerUser action
+    dispatch(registerUser({ name, email, phone, password }))
+      .unwrap()
+      .then(() => {
+        navigate('/login'); // Redirect to the login page after successful registration
+      })
+      .catch(() => {
+        // Error handling is done in the thunk
+      });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try{
-      setLoading(true);
-      const res = await axios.post("https://bharatroofers.com/api/property/register" , formData)
-      setLoading(false)
-      console.log(res)
-      if(res.data.success === true){
-        cogoToast.success(`${res.data.message}`)
-        navigate("/login");
-      }
-      setError(false)
-    }
-    catch(error){
-      setLoading(false)
-      setError(true)
-      console.log(error.response)
-      cogoToast.error(`${error.response.data.error}`)
-
-    }
-
-  }
-
-
-  useEffect(()=>{
-    ReactGA.send({ hitType: "pageview", page: window.location.pathname });
-    const handleTop = () => {
-      window.scrollTo(0, 0);
-    };
-    handleTop();
-  },[])
   return (
-    <>
-      <Container>
-      <Helmet>
-        <link rel="canonical" href={canonicalUrl} />
-      </Helmet>
-      <div className="nav1"><Navbar  isScrolled={isScrolled} /></div>
-          <div className="nav2"><NavbarMob /> </div>
-        <div>
-          <div className="boxContainer">
-         
-            <div className="formcontent">
-              <h1>Register</h1>
-              <div className="mb-3">
-                
-                <label htmlFor="name" className="form-label">
-                  Fullname
-                </label>
-                <input
-                  type="text"
-                  placeholder="Enter your fullname"
-                  name="name"
-                  className="form-control"
-                  onChange={handleChange}
-                  required
-
-                />
-              </div>
-              <div className="mb-3">
-                <label htmlFor="email" className="form-label">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  name="email"
-                  className="form-control"
-                  onChange={handleChange}
-                  required
-
-
-                />
-              </div>
-              <div className="mb-3">
-                <label htmlFor="phone" className="form-label">
-                  Mobile
-                </label>
-                <input
-                  type="text"
-                  placeholder="Enter your mobile number"
-                  name="phone"
-                  maxLength={10}
-                  className="form-control"
-                  onChange={handleChange}
-                  required
-
-
-                />
-              </div>
-              <div className="mb-3">
-                <label htmlFor="password" className="form-label">
-                  Password
-                </label>
-                <input
-                  type="password"
-                  placeholder="Enter your password"
-                  name="password"
-                  className="form-control"
-                  onChange={handleChange}
-                  required
-
-                />
-              </div>
-              <div className="d-flex justify-content-center">
-                <button disabled={loading} className="btn btn-success" onClick={handleSubmit}>
-                  {loading ? 'Loading...' : "Submit" }</button>
-              </div>
-              <p>
-                Allready have an account?{" "}
-                <span>
-                  <Link to="/login">Login</Link>
-                </span>
-              </p>
-            </div>
-          
-          </div>
+    <div className="relative flex justify-center items-center bg-black text-white min-h-screen p-8 md:mt-18 md:pt-[4rem]"  data-aos="zoom-in-left" data-aos-duration="1500">
+      <div
+        className="absolute inset-0 bg-cover bg-center backdrop-filter backdrop-blur-sm"
+        style={{
+          backgroundImage: 'url("https://thumbs.wbm.im/pw/small/e79ed78f33ea2825b7bb5598d66fe60c.jpg")',
+          opacity: 0.3,
+        }}
+      ></div>
+      <div className="relative bg-opacity-80 p-8 rounded-lg shadow-lg w-full max-w-md">
+        <div className="flex flex-col items-center mb-6">
+          <h2 className="text-4xl font-extrabold mb-4">Create an Account</h2>
+          <p className="text-center mb-8">Please enter your details to sign up.</p>
         </div>
-      </Container>
-    </>
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div>
+            <label htmlFor="name" className="block text-sm font-medium mb-2">Full Name</label>
+            <input
+              type="text"
+              id="name"
+              className="shadow-sm bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full max-w-lg p-2.5"
+              placeholder="Enter your full name..."
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </div>
+          <div>
+            <label htmlFor="email" className="block text-sm font-medium mb-2">E-Mail Address</label>
+            <input
+              type="email"
+              id="email"
+              className="shadow-sm bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full max-w-lg p-2.5"
+              placeholder="Enter your email..."
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <div>
+            <label htmlFor="phone" className="block text-sm font-medium mb-2">Mobile Number</label>
+            <input
+              type="text"
+              id="phone"
+              className="shadow-sm bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full max-w-lg p-2.5"
+              placeholder="Enter your mobile number..."
+              maxLength={10}
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+            />
+          </div>
+          <div className="relative">
+            <label htmlFor="password" className="block text-sm font-medium mb-2">Password</label>
+            <input
+              type={passwordVisible ? 'text' : 'password'}
+              id="password"
+              className="shadow-sm bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full max-w-lg p-2.5 pr-12" // Adjust padding to make room for the icon
+              placeholder="Enter your password..."
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <button
+              type="button"
+              onClick={() => setPasswordVisible(!passwordVisible)}
+              className="absolute inset-y-0 right-3 flex items-center top-5"
+            >
+              {passwordVisible ? <HiEyeOff className="text-gray-400" /> : <HiEye className="text-gray-400" />}
+            </button>
+          </div>
+          <div className="relative ">
+            <label htmlFor="confirmPassword" className="block text-sm font-medium mb-2">Confirm Password</label>
+            <input
+              type={confirmPasswordVisible ? 'text' : 'password'}
+              id="confirmPassword"
+              className="shadow-sm bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full max-w-lg p-2.5 pr-12" // Adjust padding to make room for the icon
+              placeholder="Confirm your password..."
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            />
+            <button
+              type="button"
+              onClick={() => setConfirmPasswordVisible(!confirmPasswordVisible)}
+              className="absolute inset-y-0 right-3 flex items-center top-5"
+            >
+              {confirmPasswordVisible ? <HiEyeOff className="text-gray-400" /> : <HiEye className="text-gray-400" />}
+            </button>
+          </div>
+          <button
+            type="submit"
+            className="bg-blue-900 hover:bg-blue-800 py-3 px-5 text-sm font-medium text-center text-white rounded-lg focus:ring-4 focus:outline-none"
+            disabled={loading}
+          >
+            {loading ? 'Registering...' : 'Sign Up'}
+          </button>
+          {error && <p className="text-red-500 mt-4">{error}</p>}
+        </form>
+        <p className="text-center mt-6 text-gray-300 text-sm">
+          Already have an account? <Link to="/login" className="text-blue-500 hover:underline">Login</Link>
+        </p>
+      </div>
+    </div>
   );
 };
 
-export default Registration;
-const Container = styled.div`
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(0, 0, 0, 1) 0%,
-    rgba(255, 255, 255, 1) 100%
-  );
-
-  .boxContainer {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100vw;
-    .formcontent {
-      background-color: #0dcaf0;
-      padding: 1rem 2rem;
-      border-radius: 1rem;
-      height: auto;
-      box-shadow: 1px 2px 34px #38c7e4;
-      h1 {
-        text-align: center;
-        font-family: monospace;
-        margin: 1rem 0;
-        color: #08494c;
-      }
-      .form-label {
-        margin-bottom: 0rem !important;
-      }
-    }
-  }
-  .nav1{
-    display: block;
-    @media screen and (max-width: 1000px) {
-    
-    display: none;
-    
-  }
-}
-  .nav2{
-    display: none;
-  
-    @media screen and (max-width: 1000px) {
-   display: block;
-   
- }
-   
-  }
-`;
+export default RegisterForm;
