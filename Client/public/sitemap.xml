@@ -1,0 +1,319 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+		<!--	created with www.mysitemapgenerator.com	-->
+		<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+	<loc>https://bharatroofers.com/</loc>
+	<lastmod>2024-01-31T09:16:08+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://bharatroofers.com/info/terms-and-conditions</loc>
+	<lastmod>2024-01-31T09:16:08+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://bharatroofers.com/info/privacy-policy</loc>
+	<lastmod>2024-01-31T09:16:08+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://bharatroofers.com/api/property/register</loc>
+	<lastmod>2024-01-31T09:16:08+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://bharatroofers.com/api/property/login</loc>
+	<lastmod>2024-01-31T09:16:08+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://bharatroofers.com/api/property/forgot-password</loc>
+	<lastmod>2024-01-31T09:16:08+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://bharatroofers.com/api/property/contacted</loc>
+	<lastmod>2024-01-31T09:16:08+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://bharatroofers.com/api/property/interestedUser</loc>
+	<lastmod>2024-01-31T09:16:08+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://bharatroofers.com/api/property/getPropertyByType/</loc>
+	<lastmod>2024-01-31T09:16:08+01:00</lastmod>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>https://bharatroofers.com/api/property/getPropertyById/</loc>
+	<lastmod>2024-01-31T09:16:08+01:00</lastmod>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>https://bharatroofers.com/api/property/getPropertyImagesById/</loc>
+	<lastmod>2024-01-31T09:16:08+01:00</lastmod>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>https://bharatroofers.com/api/property/getPropertyByTypeAndBhk/</loc>
+	<lastmod>2024-01-31T09:16:08+01:00</lastmod>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>https://bharatroofers.com/api/property/getPropertyForRentByType/</loc>
+	<lastmod>2024-01-31T09:16:08+01:00</lastmod>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>https://bharatroofers.com/api/property/getPropertyForResaleByType/</loc>
+	<lastmod>2024-01-31T09:16:08+01:00</lastmod>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>https://bharatroofers.com/api/property/reset-password/</loc>
+	<lastmod>2024-01-31T09:16:08+01:00</lastmod>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>https://bharatroofers.com/property/</loc>
+	<lastmod>2024-01-31T09:16:08+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://bharatroofers.com/property/propertyType/house</loc>
+	<lastmod>2024-01-31T09:16:08+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://bharatroofers.com/property/propertyType/villa</loc>
+	<lastmod>2024-01-31T09:16:08+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://bharatroofers.com/property/propertyType/plot</loc>
+	<lastmod>2024-01-31T09:16:08+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://bharatroofers.com/property/propertyType/flat</loc>
+	<lastmod>2024-01-31T09:16:08+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://bharatroofers.com/property/propertyType/land</loc>
+	<lastmod>2024-01-31T09:16:08+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://bharatroofers.com/property/propertyType/farmLand</loc>
+	<lastmod>2024-01-31T09:16:08+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://bharatroofers.com/property/propertyType/farmHouse</loc>
+	<lastmod>2024-01-31T09:16:08+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://bharatroofers.com/property/propertyType/commercial</loc>
+	<lastmod>2024-01-31T09:16:08+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://bharatroofers.com/property/propertiesForRent</loc>
+	<lastmod>2024-01-31T09:16:08+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://bharatroofers.com/about</loc>
+	<lastmod>2024-01-31T09:16:08+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://bharatroofers.com/contact</loc>
+	<lastmod>2024-01-31T09:16:08+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://bharatroofers.com/blog</loc>
+	<lastmod>2024-01-31T09:16:08+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://bharatroofers.com/register</loc>
+	<lastmod>2024-01-31T09:16:08+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://bharatroofers.com/login</loc>
+	<lastmod>2024-01-31T09:16:08+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://bharatroofers.com/property/flat/1</loc>
+	<lastmod>2024-01-31T09:16:08+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://bharatroofers.com/property/flat/2</loc>
+	<lastmod>2024-01-31T09:16:08+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://bharatroofers.com/property/flat/3</loc>
+	<lastmod>2024-01-31T09:16:08+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://bharatroofers.com/property/flat/4</loc>
+	<lastmod>2024-01-31T09:16:08+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://bharatroofers.com/property/house/1</loc>
+	<lastmod>2024-01-31T09:16:08+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://bharatroofers.com/property/house/2</loc>
+	<lastmod>2024-01-31T09:16:08+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://bharatroofers.com/property/house/3</loc>
+	<lastmod>2024-01-31T09:16:08+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://bharatroofers.com/property/house/4</loc>
+	<lastmod>2024-01-31T09:16:08+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://bharatroofers.com/property/propertiesForRent/house</loc>
+	<lastmod>2024-01-31T09:16:08+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://bharatroofers.com/property/propertiesForRent/villa</loc>
+	<lastmod>2024-01-31T09:16:08+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://bharatroofers.com/property/propertiesForRent/plot</loc>
+	<lastmod>2024-01-31T09:16:08+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://bharatroofers.com/property/propertiesForRent/flat</loc>
+	<lastmod>2024-01-31T09:16:08+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://bharatroofers.com/property/propertiesForRent/land</loc>
+	<lastmod>2024-01-31T09:16:08+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://bharatroofers.com/property/propertiesForRent/farmLand</loc>
+	<lastmod>2024-01-31T09:16:08+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://bharatroofers.com/property/propertiesForRent/farmHouse</loc>
+	<lastmod>2024-01-31T09:16:08+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://bharatroofers.com/property/propertiesForRent/commercial</loc>
+	<lastmod>2024-01-31T09:16:08+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://bharatroofers.com/property/propertiesForResale/house</loc>
+	<lastmod>2024-01-31T09:16:08+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://bharatroofers.com/property/propertiesForResale/villa</loc>
+	<lastmod>2024-01-31T09:16:08+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://bharatroofers.com/property/propertiesForResale/plot</loc>
+	<lastmod>2024-01-31T09:16:08+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://bharatroofers.com/property/propertiesForResale/flat</loc>
+	<lastmod>2024-01-31T09:16:08+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://bharatroofers.com/property/propertiesForResale/land</loc>
+	<lastmod>2024-01-31T09:16:08+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://bharatroofers.com/property/propertiesForResale/farmLand</loc>
+	<lastmod>2024-01-31T09:16:08+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://bharatroofers.com/property/propertiesForResale/farmHouse</loc>
+	<lastmod>2024-01-31T09:16:08+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://bharatroofers.com/property/propertiesForResale/commercial</loc>
+	<lastmod>2024-01-31T09:16:08+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://bharatroofers.com/forgot-password</loc>
+	<lastmod>2024-01-31T09:16:08+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://bharatroofers.com/blogs/single-blog1</loc>
+	<lastmod>2024-01-31T09:16:08+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://bharatroofers.com/blogs/single-blog2</loc>
+	<lastmod>2024-01-31T09:16:08+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://bharatroofers.com/blogs/single-blog3</loc>
+	<lastmod>2024-01-31T09:16:08+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://bharatroofers.com/blogs/single-blog4</loc>
+	<lastmod>2024-01-31T09:16:08+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://bharatroofers.com/blogs/single-blog5</loc>
+	<lastmod>2024-01-31T09:16:08+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://bharatroofers.com/blogs/single-blog6</loc>
+	<lastmod>2024-01-31T09:16:08+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://bharatroofers.com/blogs/single-blog7</loc>
+	<lastmod>2024-01-31T09:16:08+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://bharatroofers.com/blogs/single-blog8</loc>
+	<lastmod>2024-01-31T09:16:08+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+</urlset>
