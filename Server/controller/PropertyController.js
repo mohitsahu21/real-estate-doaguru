@@ -262,7 +262,7 @@ const uploadImages =  (req, res) => {
 
     // Process each image and save its path to the database
     images.forEach((image, index, array) => {
-        const imagePath = 'https://bharatroofers.com/uploads/' + image.filename; // Store the path relative to the 'uploads' directory
+        const imagePath = 'https://real-estate.doaguru.com/uploads/' + image.filename; // Store the path relative to the 'uploads' directory
 
         // Insert the image path into the database
         db.query(
